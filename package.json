@@ -1,0 +1,88 @@
+{
+  "name": "zendesk-events-consumer",
+  "version": "1.0.0",
+  "description": "Zendesk Events API Consumer",
+  "main": "consumer.js",
+  "engines": {
+    "node": "20.x"
+  },
+  "scripts": {
+    "start": "node consumer.js"
+  },
+  "dependencies": {
+    "pg": "^8.11.3",
+    "axios": "^1.6.5",
+    "dotenv": "^16.3.1"
+  }
+}
+```
+
+**`consumer.js`:** (The full code from earlier - the 200+ line file)
+
+**`.env.example`:**
+```
+ZENDESK_SUBDOMAIN=elotouchcare
+ZENDESK_EMAIL=roger.rhodes@elotouch.com
+ZENDESK_API_TOKEN=your_token_here
+DATABASE_URL=your_railway_db_url
+CONSUMER_REFRESH_INTERVAL_MINUTES=5
+FORCE_REFRESH=false
+```
+
+**`Procfile`:**
+```
+web: node consumer.js
+```
+
+**`.gitignore`:**
+```
+node_modules/
+.env
+```
+
+4. Commit and push to GitHub
+
+---
+
+### **Step 2: Connect to Railway**
+
+1. Go to **railway.app**
+2. Go to your project
+3. Click **+ New** → **GitHub Repo**
+4. Select your `zendesk-events-consumer` repo
+5. Railway will auto-detect it's Node.js and deploy
+
+---
+
+### **Step 3: Set Environment Variables**
+
+1. Click on the **zendesk-events-consumer** service
+2. Go to **Variables** tab
+3. Add these variables:
+```
+ZENDESK_SUBDOMAIN = elotouchcare
+ZENDESK_EMAIL = roger.rhodes@elotouch.com
+ZENDESK_API_TOKEN = [your actual Zendesk API token]
+DATABASE_URL = postgresql://postgres:AIPKOSgkBPIlgDIYGKdDfhhOAXjphdki@interchange.proxy.rlwy.net:28820/railway
+CONSUMER_REFRESH_INTERVAL_MINUTES = 5
+FORCE_REFRESH = false
+```
+
+---
+
+### **Step 4: Deploy**
+
+1. Commit and push the code
+2. Railway auto-deploys
+3. Go to **Deployments** tab and watch the build
+4. Once deployed, go to **Logs** tab
+
+You should see output like:
+```
+🚀 Zendesk Events API Consumer starting...
+   Subdomain: elotouchcare
+   Email: roger.rhodes@elotouch.com
+✅ Database connection successful
+🔄 Starting polling cycle...
+📊 Found X ticket view events
+✅ Stored event: ticket #12345, agent: John Doe
