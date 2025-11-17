@@ -287,15 +287,3 @@ main().catch(error => {
   console.error('❌ Fatal error:', error);
   process.exit(1);
 });
-```
-
----
-
-## **.env.example - Environment Variables**
-```
-ZENDESK_SUBDOMAIN=elotouchcare
-ZENDESK_EMAIL=roger.rhodes@elotouch.com
-ZENDESK_API_TOKEN=your_api_token_here
-DATABASE_URL=postgresql://user:password@localhost:5432/ticket_views
-CONSUMER_REFRESH_INTERVAL_MINUTES=5
-FORCE_REFRESH=false
